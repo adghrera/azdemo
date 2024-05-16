@@ -31,8 +31,20 @@ steps:
 - publish: '$(Build.ArtifactStagingDirectory)' 
   artifact: WebApp
 
-- task: AzureWebApp@1
-  # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+# - task: AzureWebApp@1
+#   # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+#   inputs:
+#     azureSubscription: 'azure-azdemo'
+#     appName: 'azdemo001'
+
+- script: 'find $(System.ArtifactsDirectory)'
+- task: AzureRmWebAppDeployment@4
   inputs:
+    ConnectionType: 'AzureRM'
     azureSubscription: 'azure-azdemo'
-    appName: 'azdemo001'
+    appType: 'webAppLinux'
+    WebAppName: 'azdemo001'
+    packageForLinux: '$(System.ArtifactsDirectory)/**/*.jar'
+    RuntimeStack: 'JAVA|17-java17'
+    StartupCommand: 'java - jar $(System.ArtifactsDirectory)/drop/WebApp/azdemo-0.0.1-SNAPSHOT.jar'
+    
