@@ -23,7 +23,7 @@ steps:
     tasks: 'build'
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)/azdemo/build' 
+    SourceFolder: '$(System.DefaultWorkingDirectory)/azdemo/build/libs' 
     Contents: '*.jar'
     TargetFolder: '$(build.artifactstagingdirectory)'
     OverWrite: true
