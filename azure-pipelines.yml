@@ -24,7 +24,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(System.DefaultWorkingDirectory)/azdemo/build/libs' 
-    Contents: '*.jar'
+    Contents: '*-SNAPSHOT.jar'
     TargetFolder: '$(build.artifactstagingdirectory)'
     OverWrite: true
 
@@ -44,7 +44,7 @@ steps:
     azureSubscription: 'azure-azdemo'
     appType: 'webAppLinux'
     WebAppName: 'azdemo001'
-    packageForLinux: '$(System.ArtifactsDirectory)/**/*.jar'
+    packageForLinux: '$(System.ArtifactsDirectory)/**/*-SNAPSHOT.jar'
     RuntimeStack: 'JAVA|17-java17'
     StartupCommand: 'java - jar $(System.ArtifactsDirectory)/drop/WebApp/azdemo-0.0.1-SNAPSHOT.jar'
     
