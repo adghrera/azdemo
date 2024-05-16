@@ -30,3 +30,9 @@ steps:
 
 - publish: '$(Build.ArtifactStagingDirectory)' 
   artifact: WebApp
+
+- task: AzureWebApp@1
+  # condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    azureSubscription: 'azure-azdemo'
+    appName: 'azdemo001'
