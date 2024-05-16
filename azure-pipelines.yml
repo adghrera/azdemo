@@ -10,9 +10,9 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Gradle@2
+- task: Gradle@3
   inputs:
-    workingDirectory: 'azdemo'
+    workingDirectory: './azdemo'
     gradleWrapperFile: 'gradlew'
     gradleOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
@@ -21,3 +21,4 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'build'
+
